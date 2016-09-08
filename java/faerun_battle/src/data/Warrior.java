@@ -12,6 +12,7 @@ import util.BoardGameHelper;
  * @author Marion
  */
 public abstract class Warrior {
+    
     // Constante
     private static final int PV_MAX = 100;
     private static final int STRENGTH_BASE = 10;
@@ -20,6 +21,7 @@ public abstract class Warrior {
     private int pv;
     private int resource;
     private Castle castle;
+    private Square square;
 
     public Warrior() {
         this.pv = PV_MAX;
@@ -45,6 +47,15 @@ public abstract class Warrior {
     
     public Castle getCastle(){
         return castle;
+    }
+    
+    public Square getSquare(){
+        return square;
+    }
+    
+    public void setSquare(BoardGame board_game){
+        if(this.getSquare() == null) this.square = board_game.getSquares()[0];
+        
     }
     
     public void setStrength(int strength){
@@ -75,7 +86,11 @@ public abstract class Warrior {
         /* randomly set the damage points */
         int base_damage = BoardGameHelper.Dice3(this.getStrength());
         target.getDamage(base_damage);
-        setResource()
+        
+        /* increment the resources of the castles */
+        /*target.getCastle().incrementResources();
+        this.getCastle().incrementResources();*/
+        
         LogFight log = new LogFight(this, target, base_damage);
         return log;
     }

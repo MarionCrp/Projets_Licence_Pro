@@ -12,11 +12,9 @@ import java.util.LinkedList;
  * @author Marion
  */
 public class Castle {
-    
-    // TODO : 
-    
-    LinkedList<Warrior> training_army = new LinkedList<>();
-    LinkedList<Warrior> fighting_army = new LinkedList<>();
+   
+    private LinkedList<Warrior> training_army = new LinkedList<>();
+    private LinkedList<Warrior> fighting_army = new LinkedList<>();
     
     private int resource;
     private final String color;
@@ -47,6 +45,10 @@ public class Castle {
     
     public void setResource(int resource) {
       this.resource = resource;
+    }
+    
+    public void incrementResources(){
+        this.setResource(getResource() + 1);
     }
     
     public void paint_warriors(LinkedList<Warrior> training_army){

@@ -1,9 +1,8 @@
 
-import data.Castle;
-import data.Warrior;
-import java.util.LinkedList;
+import data.*;
 import race.*;
 import util.BoardGameHelper;
+import java.util.LinkedList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,6 +14,9 @@ import util.BoardGameHelper;
  *
  * @author Marion
  */
+
+// TODO : Faire avancer mes nains sur le plateau et ressources.
+
 public class Test {
     public static void main(String[] args){
         /* an elf attaks a dwarf : */
@@ -58,8 +60,17 @@ public class Test {
         blue_army.add(new Dwarf());
         blue_army.add(new Elf());
         blue_army.add(new Elf());
-        Castle cast = new Castle("Blue", blue_army);
-        System.out.println(cast.getColor());
         
+        LinkedList<Warrior> red_army = new LinkedList<>();
+        
+        
+        Castle blue_castle = new Castle("Blue", blue_army);
+        Castle red_castle = new Castle("Red", red_army);
+        
+        BoardGame board_game = new BoardGame(5);
+        Square[] totos = board_game.getSquares();
+        for(Square square: totos){
+            System.out.println(square);
+        }
     }
 }
