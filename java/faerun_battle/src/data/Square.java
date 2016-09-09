@@ -13,25 +13,25 @@ import java.util.LinkedList;
  */
 public class Square {
     /* a square contains a list of warriors (fighting or moving) */
-    private LinkedList<Warrior> warriors = new LinkedList<>();
+    private LinkedList<Warrior> red_warriors = new LinkedList<>();
+    private LinkedList<Warrior> blue_warriors = new LinkedList<>();
+    
     public Square(){
     }
     
-    /*
-    * 
-    */
-    public LinkedList<Warrior> getWarriors(){
-        return warriors;
+    public LinkedList<Warrior> getBlueWarriors(){
+        return blue_warriors;
     }
     
+    public LinkedList<Warrior> getRedWarriors(){
+        return red_warriors;
+    }
+
     /*
     * Comparing if a square has any warriors from the enemy Castle.
     * @param warrior : looking for enemy to fight with.
     */
-    public boolean has_any_enemy(Warrior warrior){
-        for(Warrior other_warrior: warriors){
-            if(other_warrior.getCastle() == warrior.getCastle()) return true;
-        }
-        return false;
+    public boolean is_a_fithing_zone(){
+        return !getBlueWarriors().isEmpty() && !getRedWarriors().isEmpty();
     }
 }

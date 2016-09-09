@@ -21,7 +21,7 @@ public abstract class Warrior {
     private int pv;
     private int resource;
     private Castle castle;
-    private Square square;
+    //private Square square;
 
     public Warrior() {
         this.pv = PV_MAX;
@@ -43,24 +43,21 @@ public abstract class Warrior {
         return resistance;
     }
         
-    public int getResource(){
-        return resource;
-    }
+    public abstract int getResource();
     
     public Castle getCastle(){
         return castle;
     }
     
-    public Square getSquare(){
+    /*public Square getSquare(){
         return square;
-    }
+    }*/
     
     /********************************* SETTERS ********************************/
     
-    public void setSquare(BoardGame board_game){
-        if(this.getSquare() == null) this.square = board_game.getSquares()[0];
-        
-    }
+//    public void setSquare(BoardGame board_game){
+//        if(this.getSquare() == null) this.square = board_game.getSquares()[0]; 
+//    }
     
     public void setStrength(int strength){
         this.strength = strength;
@@ -104,13 +101,6 @@ public abstract class Warrior {
         LogFight log = new LogFight(this, target, base_damage);
         return log;
     }
-    
-    /*
-    * removes damages to a target
-    */
-    public void getDamage(int base_dmg) {
-       this.setPv(getPv() - this.real_damage(base_dmg));
-    }
 
     /*
     * calculates the real damages according to the target resistance
@@ -135,7 +125,15 @@ public abstract class Warrior {
         String name = "";
         if(this.getCastle() != null) name = this.getCastle().getColor() + " ";
         name += this.getClass().getSimpleName();
-        
         return name;     
+    }
+    
+    /*************************** PRIVATE METHODS ******************************/
+        
+    /*
+    * removes damages to a target
+    */
+    private void getDamage(int base_dmg) {
+       this.setPv(getPv() - this.real_damage(base_dmg));
     }
 }

@@ -15,4 +15,9 @@ public class Dwarf extends Warrior {
     public Dwarf() {
         this.setResistance(2);
     }
+    @Override
+    public int getResource(){
+        return 1;
+    }
+    
 }
