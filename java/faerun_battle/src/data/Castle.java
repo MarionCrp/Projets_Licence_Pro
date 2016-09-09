@@ -13,7 +13,10 @@ import java.util.LinkedList;
  */
 public class Castle {
    
+    /*warriors to train*/
     private LinkedList<Warrior> training_army = new LinkedList<>();
+    
+    /* warriors ready to fight */
     private LinkedList<Warrior> fighting_army = new LinkedList<>();
     
     private int resource;
@@ -47,10 +50,16 @@ public class Castle {
       this.resource = resource;
     }
     
+    /*
+    * Add a resource point every round
+    */
     public void incrementResources(){
         this.setResource(getResource() + 1);
     }
     
+    /*
+    * Add an army of warrior to the castle
+    */
     public void paint_warriors(LinkedList<Warrior> training_army){
         for(Warrior warrior: training_army){
             warrior.setCastle(this);

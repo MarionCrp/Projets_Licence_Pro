@@ -28,6 +28,8 @@ public abstract class Warrior {
         this.strength = STRENGTH_BASE;
         this.resistance = 1;
     }
+    
+    /********************************* GETTERS ********************************/
 
     public int getPv() {
         return pv;
@@ -53,6 +55,8 @@ public abstract class Warrior {
         return square;
     }
     
+    /********************************* SETTERS ********************************/
+    
     public void setSquare(BoardGame board_game){
         if(this.getSquare() == null) this.square = board_game.getSquares()[0];
         
@@ -71,9 +75,10 @@ public abstract class Warrior {
     }
     
     public void setCastle(Castle castle){
-        this.castle = castle;
+        if(this.castle == null){
+           this.castle = castle; 
+        }
     }
-
 
     /**
      * @param pv the pv to set
@@ -82,31 +87,38 @@ public abstract class Warrior {
         this.pv = pv;
     }
 
+    /****************************** PUBLIC METHODS ****************************/
+    
+    /*
+    * a warrior attak a target
+    * @param target which will receive damages
+    * @return LogFight with the datas needed to display the fight
+    */
     public LogFight attak(Warrior target){
         /* randomly set the damage points */
         int base_damage = BoardGameHelper.Dice3(this.getStrength());
-        target.getDamage(base_damage);
         
-        /* increment the resources of the castles */
-        /*target.getCastle().incrementResources();
-        this.getCastle().incrementResources();*/
+        /* afflicts damage to the target */
+        target.getDamage(base_damage);
         
         LogFight log = new LogFight(this, target, base_damage);
         return log;
     }
-
-    /* calculates the real damages according to the target strength */
-    public int real_damage(int base_dmg){
-        return base_dmg / this.getResistance();
-    }
-
+    
     /*
-    * removes "dmg" from pv points.
+    * removes damages to a target
     */
     public void getDamage(int base_dmg) {
        this.setPv(getPv() - this.real_damage(base_dmg));
     }
-    
+
+    /*
+    * calculates the real damages according to the target resistance
+    */
+    public int real_damage(int base_dmg){
+        return base_dmg / this.getResistance();
+    }
+
     /*
     * checks if the warrior is dead
     */
@@ -114,7 +126,16 @@ public abstract class Warrior {
         return getPv() <= 0;
     }
     
+    /*
+    * return the name of a Warrior
+    * according to the color of his castle if he has one,
+    * and his class name.
+    */
     public String getName(){
-        return this.getClass().getSimpleName();
+        String name = "";
+        if(this.getCastle() != null) name = this.getCastle().getColor() + " ";
+        name += this.getClass().getSimpleName();
+        
+        return name;     
     }
 }

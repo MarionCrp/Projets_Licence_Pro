@@ -11,30 +11,28 @@ import java.util.Random;
  */
 
 /**
- *
+ * Containing helpful methods for the boardgame.
  * @author Marion
  */
 public class BoardGameHelper {
+    
     private static final Random RANDOM = new Random();
     
+    /*
+    * Randomly set a number between 1 and 3.
+    */
     public static int Dice3() {  
         return RANDOM.nextInt(3)+1; 
     }
     
+    /*
+    * Randomly set "diceNumber" times number between 1 and 3 and return the sum.
+    */
     public static int Dice3(int diceNumber) {  
         int sum = 0;
         for (int i = 0; i < diceNumber; i++) {
             sum = sum + Dice3();
         }   
         return sum; 
-    }
-    
-    public static void displayFight(LogFight log){
-        System.out.println(log.getAssailant().getName() + "[" + log.getAssailant().getPv() + " PV] attaks " + log.getTarget().getName());
-        System.out.println(log.getTarget().getName() + " losts " + log.getRealDamage() + " pv.");
-        System.out.println(log.getTarget().getName() + " still has " + log.getTarget().getPv() + " pv left.");
-        if(log.getTarget().isDead()){
-            System.out.println(log.getTarget().getName() + " is dead.");
-        }
     }
 }

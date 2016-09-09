@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Marion
  */
 public class BoardGame {
-    private Square[] squares;
+    private Square[] squares; /* A Board has a certain numbers of squares */
     
     public BoardGame(int number_of_square){
         this.squares = new Square[number_of_square];

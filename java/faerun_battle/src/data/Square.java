@@ -12,12 +12,16 @@ import java.util.LinkedList;
  * @author Marion
  */
 public class Square {
-    private LinkedList<Warrior> fighting_warriors = new LinkedList<>();
+    /* a square contains a list of warriors (fighting or moving) */
+    private LinkedList<Warrior> warriors = new LinkedList<>();
     public Square(){
     }
     
-    public LinkedList<Warrior> getFightingWarriors(){
-        return fighting_warriors;
+    /*
+    * 
+    */
+    public LinkedList<Warrior> getWarriors(){
+        return warriors;
     }
     
     /*
@@ -25,7 +29,7 @@ public class Square {
     * @param warrior : looking for enemy to fight with.
     */
     public boolean has_any_enemy(Warrior warrior){
-        for(Warrior other_warrior: fighting_warriors){
+        for(Warrior other_warrior: warriors){
             if(other_warrior.getCastle() == warrior.getCastle()) return true;
         }
         return false;
