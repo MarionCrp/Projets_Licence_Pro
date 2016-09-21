@@ -41,8 +41,8 @@ public class TestResource {
         
         /**************************** Create Castles **************************/  
         
-        Castle blue_castle = new Castle("Blue", blue_army, board_game.getBlueCastleZone());
-        Castle red_castle = new Castle("Red", red_army, board_game.getRedCastleZone());
+        Castle blue_castle = new Castle("Blue", blue_army);
+        Castle red_castle = new Castle("Red", red_army);
         
         
         
@@ -58,7 +58,7 @@ public class TestResource {
 
         // Training Warrior : 
         System.out.println("\n*****************  Training a Warrior *************************\n");
-        blue_castle.train_warrior();
+        blue_castle.train_warrior(board_game);
         
                 
         //Display Resource : 
@@ -71,7 +71,7 @@ public class TestResource {
         
         // Training Warrior :
         System.out.println("\n*****************  Training a Warrior *************************\n");
-        blue_castle.train_warrior();
+        blue_castle.train_warrior(board_game);
         
         //Display Resource : 
         System.out.println("\nResources : " + blue_castle.getResource());
@@ -83,7 +83,7 @@ public class TestResource {
         
         // Training Warrior :
         System.out.println("\n*****************  Training a Warrior *************************\n");
-        blue_castle.train_warrior();
+        blue_castle.train_warrior(board_game);
         
         //Display Resource : 
         System.out.println("\nResources : " + blue_castle.getResource());

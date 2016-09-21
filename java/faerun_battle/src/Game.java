@@ -19,9 +19,11 @@ import java.util.LinkedList;
 public class Game {
     public static void main(String[] args){
         
+        // TODO : Avancer les unités sur le plateau en vérifiant d'abord qu'il n'y a pas d'ennemi sur la case actuelle. Puis vérifier sru la suivante.
+        
         /**************************** Create BoardGame ************************/  
         
-        BoardGame board_game = new BoardGame(7);
+        BoardGame board_game = new BoardGame(5);
 
 
         /************************* Create Castles' Army ***********************/
@@ -31,7 +33,6 @@ public class Game {
         blue_army.add(new Dwarf());
         blue_army.add(new Elf());
         blue_army.add(new Elf());
-        blue_army.add(new DwarfOverlord());
         blue_army.add(new ElfOverlord());
         
         LinkedList<Warrior> red_army = new LinkedList<>();
@@ -41,30 +42,79 @@ public class Game {
         red_army.add(new Elf());
         red_army.add(new DwarfOverlord());
         red_army.add(new ElfOverlord());
+        red_army.add(new ElfOverlord());
         
         /**************************** Create Castles **************************/  
         
-        Castle blue_castle = new Castle("Blue", blue_army, board_game.getBlueCastleZone());
-        Castle red_castle = new Castle("Red", red_army, board_game.getRedCastleZone());
+        Castle blue_castle = new Castle("Blue", blue_army);
+        Castle red_castle = new Castle("Red", red_army);
         
         /**************************** First_Round *****************************/
         
         /*********************** displaying resources *************************/
-        System.out.println(Display.castles_resources(blue_castle.getResource(), red_castle.getResource()));
+        System.out.println(Display.castlesResources(blue_castle.getResource(), red_castle.getResource()));
         
         /*********************** displaying army to train *********************/
-        //System.out.println(Display.trainingArmy(blue_castle, red_castle));
+        System.out.println(Display.armyToTrain(blue_castle));
+        System.out.println(Display.armyToTrain(red_castle));     
+
         
-        System.out.println(board_game.getSquares()[0].getBlueWarriors().isEmpty());
-        /************** checking resources and training warriors if any *******/
-        
-        
-        /* increment the resources of the castles */
-        
+        /* increment the resources of the castles */        
         blue_castle.incrementResources();
         red_castle.incrementResources();
+
+        /************** checking resources and TRAINING WARRIORS if any *******/
         
-       
-        System.out.println(Display.newResource(blue_castle.getResource(), red_castle.getResource()));
+        System.out.println(Display.training_announcement().toUpperCase());
+        while(blue_castle.train_warrior(board_game));
+        while(red_castle.train_warrior(board_game));
+
+        
+        /****************** Armies are moving *********************************/
+        System.out.println(Display.moving_annoucement());
+        board_game.moving(blue_castle);
+        board_game.moving(red_castle);
+        
+                
+        /************************ Fighting Time *******************************/       
+        
+        board_game.fighting(blue_castle, red_castle);
+        
+        
+        /************************ end of a tour *******************************/
+        
+        /************************ rounds to the end ***************************/
+        
+        while(!board_game.someone_won()){
+             
+            /*********************** Other_Rounds *****************************/
+        
+            /******************* displaying resources *************************/
+           
+            blue_castle.incrementResources();
+            red_castle.incrementResources();
+            System.out.println(Display.newResource(blue_castle.getResource(), red_castle.getResource()));
+            
+            /********** checking resources and TRAINING WARRIORS if any *******/
+        
+            System.out.println(Display.training_announcement().toUpperCase());
+            while(blue_castle.train_warrior(board_game));
+            while(red_castle.train_warrior(board_game));
+
+
+            /****************** Armies are moving *****************************/
+            System.out.println(Display.moving_annoucement());
+            board_game.moving(blue_castle);
+            board_game.moving(red_castle);
+            
+            /*********************** displaying army to train ******************/
+            System.out.println(Display.fightingArmy(blue_castle));
+            System.out.println(Display.fightingArmy(red_castle)); 
+
+            /************************ Fighting Time ***************************/       
+
+            board_game.fighting(blue_castle, red_castle);
+        }
+        if(board_game.someone_won()) System.out.println(Display.winner_annoucenemnt(board_game.winner_team()));
     }
 }
