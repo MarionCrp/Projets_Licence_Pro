@@ -1,7 +1,6 @@
 package com.example.marion.tabatatimer.data;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +31,9 @@ public class ProgramListAdapter extends ArrayAdapter<Program> {
         ProgramViewHolder viewHolder = (ProgramViewHolder) convertView.getTag();
         if(viewHolder == null){
             viewHolder = new ProgramViewHolder();
-            viewHolder.program_title = (TextView) convertView.findViewById(R.id.program_title);
-            viewHolder.rest_time = (TextView) convertView.findViewById(R.id.rest_textview);
-            viewHolder.work_time = (TextView) convertView.findViewById(R.id.workTime_textview);
+            viewHolder.title = (TextView) convertView.findViewById(R.id.title_textView);
+            viewHolder.rest_time = (TextView) convertView.findViewById(R.id.rest_time_textView);
+            viewHolder.work_time = (TextView) convertView.findViewById(R.id.work_time_textView);
             convertView.setTag(viewHolder);
         }
 
@@ -42,14 +41,14 @@ public class ProgramListAdapter extends ArrayAdapter<Program> {
         Program program = getItem(position);
 
         // Remplissage des vues
-        viewHolder.program_title.setText(program.getTitle());
-        viewHolder.rest_time.setText(program.get);
-        viewHolder.work_time.setText("Toto2");
+        viewHolder.title.setText(program.getTitle());
+        viewHolder.rest_time.setText(String.valueOf(program.getRest_time()) + "\"");
+        viewHolder.work_time.setText(String.valueOf(program.getWork_time()) + "\"");
         return convertView;
     }
 
     private class ProgramViewHolder {
-        public TextView program_title;
+        public TextView title;
         public TextView rest_time;
         public TextView work_time;
     }

@@ -10,4 +10,18 @@ public class ProgramDAO {
     public static List<Program> selectAll(){
         return Program.listAll(Program.class);
     }
+
+    public Program selectFirstProgram(){
+        return Program.first(Program.class);
+    }
+
+    public void destroy(Program program){
+        program.delete();
+    }
+
+    public void destroyAll(){
+        for(Program program : selectAll()){
+            program.delete();
+        }
+    }
 }

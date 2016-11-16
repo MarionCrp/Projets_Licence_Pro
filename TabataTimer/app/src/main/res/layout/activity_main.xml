@@ -12,6 +12,13 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true">
 
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:id="@+id/textView2"
+            android:textAlignment="center" />
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -38,4 +45,5 @@
                 android:onClick="onIndex" />
         </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>

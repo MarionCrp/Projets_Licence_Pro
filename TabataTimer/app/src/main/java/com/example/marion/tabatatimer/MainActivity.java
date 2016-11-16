@@ -4,19 +4,26 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.marion.tabatatimer.Program.Index;
 import com.example.marion.tabatatimer.Program.New;
+import com.example.marion.tabatatimer.data.ProgramDAO;
 
 public class MainActivity extends AppCompatActivity {
 
     public final static int NEW_ACTIVITY_REQUEST = 1;
     public final static int INDEX_ACTIVITY_REQUEST = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TextView test = (TextView)findViewById(R.id.textView2);
+        ProgramDAO programDao = new ProgramDAO();
+        System.out.println(programDao.selectAll().size());
+        test.setText(String.valueOf(programDao.selectFirstProgram().getRest_time()));
         //Test d'affichage d'un timer.
        /* new CountDownTimer(30000, 1000){
             public void onTick(long millisUntilFinished) {

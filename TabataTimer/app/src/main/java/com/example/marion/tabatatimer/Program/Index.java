@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.marion.tabatatimer.R;
 import com.example.marion.tabatatimer.data.Program;
@@ -18,6 +19,7 @@ public class Index extends AppCompatActivity {
     public final static int EDIT_ACTIVITY_REQUEST = 1;
     public final static int NEW_ACTIVITY_REQUEST = 2;
     private ListView mListView;
+    private TextView no_program_flash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +33,13 @@ public class Index extends AppCompatActivity {
 
         List<Program> programs = ProgramDAO.selectAll();
 
-        ProgramListAdapter adapter = new ProgramListAdapter(Index.this, programs);
-        mListView.setAdapter(adapter);
-
+        if(programs.size() == 0){
+            no_program_flash = (TextView) findViewById(R.id.no_program_flash);
+            no_program_flash.setText("No program. Add your first!");
+        } else {
+            ProgramListAdapter adapter = new ProgramListAdapter(Index.this, programs);
+            mListView.setAdapter(adapter);
+        }
     }
 
     // Bouton pour créer un nouveau programme.

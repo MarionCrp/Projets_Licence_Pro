@@ -13,41 +13,59 @@
 
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:text="Cancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onCancel"
-            android:id="@+id/cancel_button"
-            android:layout_weight="1" />
-
-        <Button
-            android:text="New"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onNew"
-            android:id="@+id/new_button"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="61dp">
+        android:layout_weight="1">
 
-        <ListView
+        <TextView
+            android:text="TextView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/listview_program"></ListView>
+            android:layout_height="28dp"
+            android:id="@+id/no_program_flash"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif-medium" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="Cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onCancel"
+                android:id="@+id/cancel_button"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="New"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onNew"
+                android:id="@+id/new_button"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="446dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/listview_program"
+                android:layout_weight="1"></ListView>
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

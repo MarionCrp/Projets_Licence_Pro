@@ -34,25 +34,21 @@
             android:layout_width="match_parent"
             android:layout_height="83dp">
 
-
             <TextView
                 android:text="Exercice Time"
-                android:layout_width="wrap_content"
+                android:layout_width="153dp"
                 android:layout_height="match_parent"
                 android:id="@+id/tabataLabel"
-                android:layout_weight="0.40"
                 android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-                android:gravity="center" />
+                android:gravity="center"
+                android:layout_weight="0.08" />
 
             <NumberPicker
-                android:layout_width="103dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/active_time_minutes" />
+                android:id="@+id/work_time"
+                android:layout_weight="1.07" />
 
-            <NumberPicker
-                android:layout_width="92dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/active_time_secondes" />
         </LinearLayout>
 
         <LinearLayout
@@ -60,6 +56,8 @@
             android:layout_width="match_parent"
             android:layout_height="82dp"
             android:layout_weight="0.25">
+
+
 
             <TextView
                 android:text="Rest Time"
@@ -73,13 +71,7 @@
             <NumberPicker
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/passive_time_minutes"
-                android:layout_weight="1.46" />
-
-            <NumberPicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/passive_time_secondes"
+                android:id="@+id/rest_time"
                 android:layout_weight="1.07" />
 
         </LinearLayout>
@@ -91,16 +83,18 @@
 
             <TextView
                 android:text="Cycles"
-                android:layout_width="157dp"
+                android:layout_width="153dp"
                 android:layout_height="match_parent"
                 android:id="@+id/textView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
                 android:gravity="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title" />
+                android:layout_weight="0.08" />
 
             <NumberPicker
-                android:layout_width="213dp"
-                android:layout_height="51dp"
-                android:id="@+id/nb_of_cycles" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nb_of_cycles"
+                android:layout_weight="1.07" />
         </LinearLayout>
 
         <Button
