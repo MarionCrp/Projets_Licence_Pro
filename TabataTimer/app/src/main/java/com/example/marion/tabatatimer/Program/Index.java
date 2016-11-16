@@ -1,0 +1,58 @@
+package com.example.marion.tabatatimer.Program;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
+
+import com.example.marion.tabatatimer.R;
+import com.example.marion.tabatatimer.data.Program;
+import com.example.marion.tabatatimer.data.ProgramDAO;
+import com.example.marion.tabatatimer.data.ProgramListAdapter;
+
+import java.util.List;
+
+public class Index extends AppCompatActivity {
+
+    public final static int EDIT_ACTIVITY_REQUEST = 1;
+    public final static int NEW_ACTIVITY_REQUEST = 2;
+    private ListView mListView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_index);
+
+        mListView = (ListView) findViewById(R.id.listview_program);
+
+        // Instanciation de l'objet qui va chercher la liste des programmes en base de données.
+        ProgramDAO programDao = new ProgramDAO();
+
+        List<Program> programs = ProgramDAO.selectAll();
+
+        ProgramListAdapter adapter = new ProgramListAdapter(Index.this, programs);
+        mListView.setAdapter(adapter);
+
+    }
+
+    // Bouton pour créer un nouveau programme.
+    public void onEdit(View view){
+        Intent intent = new Intent(this, Edit.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivityForResult(intent, EDIT_ACTIVITY_REQUEST);
+    }
+
+    // Bouton pour créer un nouveau programme.
+    public void onNew(View view){
+        Intent intent = new Intent(this, New.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivityForResult(intent, NEW_ACTIVITY_REQUEST);
+    }
+
+    public void onCancel(View view){
+        finish();
+    }
+
+
+}
