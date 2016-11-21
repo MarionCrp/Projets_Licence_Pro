@@ -51,14 +51,14 @@
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/edit_button_"
             android:layout_toStartOf="@+id/edit_button_"
-            android:id="@+id/play_button_"
+            android:id="@+id/run_button"
             android:layout_weight="1" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_menu_edit"
-            android:id="@+id/edit_button_"
+            android:id="@+id/edit_button"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/delete_button"
             android:layout_toStartOf="@+id/delete_button"

@@ -23,7 +23,6 @@ public class New extends AppCompatActivity {
 
         //Titre du programme
         program_title = (EditText) findViewById(R.id.exerciceName);
-        program_title.setText("Toto");
         np_number_of_cycles = (NumberPicker) findViewById(R.id.nb_of_cycles);
         np_number_of_cycles.setMaxValue(30);
         np_number_of_cycles.setMinValue(0);
@@ -46,6 +45,7 @@ public class New extends AppCompatActivity {
         int choosen_nb_of_cycles = np_number_of_cycles.getValue();
         Program program = new Program(choosen_program_title, choosen_active_time_minutes, choosen_passive_time_minutes, choosen_nb_of_cycles);
         program.save();
+        setResult(RESULT_OK, null); // Permet de valider la condition du refresh
         finish();
     }
 

@@ -15,6 +15,14 @@ public class ProgramDAO {
         return Program.first(Program.class);
     }
 
+    public Program findById(int id){
+        return Program.findById(Program.class, id);
+    }
+
+    public int count(){
+        return (int) Program.count(Program.class);
+    }
+
     public void destroy(Program program){
         program.delete();
     }

@@ -19,7 +19,7 @@
         android:layout_weight="1">
 
         <TextView
-            android:text="TextView"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="28dp"
             android:id="@+id/no_program_flash"

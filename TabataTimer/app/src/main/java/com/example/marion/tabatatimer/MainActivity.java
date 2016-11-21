@@ -12,8 +12,9 @@ import com.example.marion.tabatatimer.data.ProgramDAO;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static int NEW_ACTIVITY_REQUEST = 1;
-    public final static int INDEX_ACTIVITY_REQUEST = 2;
+    public final static int MAIN_ACTIVITY_REQUEST = 1;
+    public final static int NEW_ACTIVITY_REQUEST = 2;
+    public final static int INDEX_ACTIVITY_REQUEST = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
         TextView test = (TextView)findViewById(R.id.textView2);
         ProgramDAO programDao = new ProgramDAO();
         System.out.println(programDao.selectAll().size());
-        test.setText(String.valueOf(programDao.selectFirstProgram().getRest_time()));
+        if(programDao.count() > 0){
+            test.setText(String.valueOf(programDao.selectFirstProgram().getTitle()));
+        }
         //Test d'affichage d'un timer.
        /* new CountDownTimer(30000, 1000){
             public void onTick(long millisUntilFinished) {

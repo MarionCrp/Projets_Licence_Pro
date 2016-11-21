@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,9 +16,9 @@ import com.example.marion.tabatatimer.data.ProgramListAdapter;
 import java.util.List;
 
 public class Index extends AppCompatActivity {
-
-    public final static int EDIT_ACTIVITY_REQUEST = 1;
-    public final static int NEW_ACTIVITY_REQUEST = 2;
+    public final static int NEW_ACTIVITY_REQUEST = 1;
+    public final static int EDIT_ACTIVITY_REQUEST = 2;
+    public static int PROGRAM_ID;
     private ListView mListView;
     private TextView no_program_flash;
 
@@ -27,26 +28,18 @@ public class Index extends AppCompatActivity {
         setContentView(R.layout.activity_index);
 
         mListView = (ListView) findViewById(R.id.listview_program);
-
         // Instanciation de l'objet qui va chercher la liste des programmes en base de données.
         ProgramDAO programDao = new ProgramDAO();
 
         List<Program> programs = ProgramDAO.selectAll();
 
         if(programs.size() == 0){
-            no_program_flash = (TextView) findViewById(R.id.no_program_flash);
+            TextView no_program_flash = (TextView) findViewById(R.id.no_program_flash);
             no_program_flash.setText("No program. Add your first!");
-        } else {
+        }else {
             ProgramListAdapter adapter = new ProgramListAdapter(Index.this, programs);
             mListView.setAdapter(adapter);
         }
-    }
-
-    // Bouton pour créer un nouveau programme.
-    public void onEdit(View view){
-        Intent intent = new Intent(this, Edit.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivityForResult(intent, EDIT_ACTIVITY_REQUEST);
     }
 
     // Bouton pour créer un nouveau programme.
@@ -60,5 +53,13 @@ public class Index extends AppCompatActivity {
         finish();
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            Intent refresh = new Intent(this, Index.class);
+            startActivity(refresh);
+            this.finish();
+        }
+    }
 }
