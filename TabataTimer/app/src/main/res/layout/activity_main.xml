@@ -22,14 +22,14 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <Button
                 android:text="New"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/new_program"
-                android:layout_weight="1"
+                android:layout_weight="1.56"
                 android:textColor="@android:color/white"
                 android:backgroundTint="@android:color/holo_green_light"
                 android:onClick="onNew" />
@@ -43,7 +43,45 @@
                 android:backgroundTint="@android:color/holo_blue_dark"
                 android:textColor="@android:color/white"
                 android:onClick="onIndex" />
+
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:layout_weight="0.05">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/chrono_work"
+                android:layout_weight="0.22"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@android:color/holo_red_dark"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/chrono_rest"
+                android:layout_weight="0.22"
+                android:textSize="36sp"
+                android:gravity="center"
+                android:textColor="@android:color/holo_green_dark"
+                android:textStyle="normal|bold" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cycles"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp" />
+
     </LinearLayout>
 
 </RelativeLayout>
