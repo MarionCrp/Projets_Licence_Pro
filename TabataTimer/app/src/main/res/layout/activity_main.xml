@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
-            android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:id="@+id/textView2"
@@ -47,40 +47,47 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="145dp"
-            android:layout_weight="0.05">
+            android:layout_weight="0.08">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/chrono_work"
-                android:layout_weight="0.22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/announcement"
+                android:gravity="center"
+                android:layout_weight="4.04"
+                android:textColor="@android:color/holo_red_dark"
                 android:textSize="36sp"
+                android:textAlignment="center"
+                android:textStyle="normal|bold"
+                android:text="WORK TIME" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/chrono"
+                android:textSize="60sp"
                 android:gravity="center"
                 android:textColor="@android:color/holo_red_dark"
-                android:textStyle="normal|bold" />
+                android:textStyle="normal|bold"
+                android:text="5"
+                android:layout_weight="4.04" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/chrono_rest"
-                android:layout_weight="0.22"
-                android:textSize="36sp"
-                android:gravity="center"
-                android:textColor="@android:color/holo_green_dark"
-                android:textStyle="normal|bold" />
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cycles"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24sp" />
+            android:id="@+id/cycles_result"
+            android:layout_weight="0.04"
+            android:gravity="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="50sp"
+            android:text="2/3"
+            android:textStyle="normal|bold" />
 
     </LinearLayout>
 
