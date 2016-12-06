@@ -164,26 +164,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void miseAJour() {
-
-        int secs = (int) (updatedTime / 1000);
-        int mins = secs / 60;
-        secs = secs % 60;
-        int milliseconds = (int) (updatedTime % 1000);
-
-        // Affichage du "timer"
-        currentTimer.setText("" + mins + ":"
-                + String.format("%02d", secs) + ":"
-                + String.format("%03d", milliseconds));
-        currentTimerLabel.setText(currentTimerName);
-
-        prepareValue.setText(currentConfig.getPrepare() / 60 + ":" + String.format("%02d", currentConfig.getPrepare() % 60));
-        workValue.setText("" + currentConfig.getWork() / 60 + ":" + String.format("%02d", currentConfig.getWork() % 60));
-        restValue.setText(currentConfig.getRest() / 60 + ":" + String.format("%02d", currentConfig.getRest() % 60));
-        cyclesValue.setText(Integer.toString(currentConfig.getCycles()));
-        tabatasValue.setText(Integer.toString(currentConfig.getTabatas()));
-    }
-
 
     //TODO ::: FAIRE FONCTION PAUSE
     public boolean tabata_is_finished(Program program) {
