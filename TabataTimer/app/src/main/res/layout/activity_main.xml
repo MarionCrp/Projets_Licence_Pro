@@ -57,12 +57,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/announcement"
                 android:gravity="center"
-                android:layout_weight="4.04"
+                android:layout_weight="0.07"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="36sp"
                 android:textAlignment="center"
-                android:textStyle="normal|bold"
-                android:text="WORK TIME" />
+                android:textStyle="normal|bold" />
 
 
             <TextView
@@ -73,8 +72,7 @@
                 android:gravity="center"
                 android:textColor="@android:color/holo_red_dark"
                 android:textStyle="normal|bold"
-                android:text="5"
-                android:layout_weight="4.04" />
+                android:layout_weight="0.03" />
 
         </LinearLayout>
 
@@ -84,11 +82,34 @@
             android:id="@+id/cycles_result"
             android:layout_weight="0.04"
             android:gravity="center"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@android:color/background_dark"
             android:textSize="50sp"
-            android:text="2/3"
             android:textStyle="normal|bold" />
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="81dp"
+            android:layout_weight="0.02">
+
+            <Button
+                android:text="Start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/start_button"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:onClick="onStart" />
+
+            <Button
+                android:text="Pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pause_button"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:onClick="onPauseButton" />
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

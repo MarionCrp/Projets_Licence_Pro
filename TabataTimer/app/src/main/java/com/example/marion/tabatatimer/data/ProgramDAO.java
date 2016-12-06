@@ -11,23 +11,23 @@ public class ProgramDAO {
         return Program.listAll(Program.class);
     }
 
-    public Program selectFirstProgram(){
+    public static Program selectFirstProgram(){
         return Program.first(Program.class);
     }
 
-    public Program findById(int id){
+    public static Program findById(int id){
         return Program.findById(Program.class, id);
     }
 
-    public int count(){
+    public static int count(){
         return (int) Program.count(Program.class);
     }
 
-    public void destroy(Program program){
+    public static void destroy(Program program){
         program.delete();
     }
 
-    public void destroyAll(){
+    public static void destroyAll(){
         for(Program program : selectAll()){
             program.delete();
         }

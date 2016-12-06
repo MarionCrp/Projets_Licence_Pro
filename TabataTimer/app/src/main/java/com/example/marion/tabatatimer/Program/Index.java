@@ -29,7 +29,6 @@ public class Index extends AppCompatActivity {
 
         mListView = (ListView) findViewById(R.id.listview_program);
         // Instanciation de l'objet qui va chercher la liste des programmes en base de données.
-        ProgramDAO programDao = new ProgramDAO();
 
         List<Program> programs = ProgramDAO.selectAll();
 

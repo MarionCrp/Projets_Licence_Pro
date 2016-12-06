@@ -35,8 +35,8 @@ public class Edit extends AppCompatActivity {
         } else {
             program_id= (String) savedInstanceState.getSerializable("PROGRAM_ID");
         }
-        ProgramDAO programDAO = new ProgramDAO();
-        program = programDAO.findById(Integer.parseInt(program_id));
+
+        program = ProgramDAO.findById(Integer.parseInt(program_id));
         if(program != null){
             //Titre du programme
             program_title = (EditText) findViewById(R.id.exerciceName);
