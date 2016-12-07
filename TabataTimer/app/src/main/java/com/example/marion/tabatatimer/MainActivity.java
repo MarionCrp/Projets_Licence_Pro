@@ -9,6 +9,7 @@ import android.support.v7.widget.ButtonBarLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.marion.tabatatimer.Program.Index;
 import com.example.marion.tabatatimer.Program.New;
@@ -27,20 +28,27 @@ public class MainActivity extends AppCompatActivity {
     public final String WORK_COLOR = "#b30000";
     public final String REST_COLOR = "#008000";
     public final String ANNOUNCEMENT_COLOR = "#993366";
-    private static String STATE_MILLIUNTILFINISHED;
-    private static String STATE_NB_OF_CYCLE_DONE;
-    private static String STATE_IS_WORK_SESSION;
-    private static String STATE_PROGRAM_ID;
+
+    // Constante dans lesquelles nous allons sauvegarder nos données lors du refresh (lorsqu'on tourne l'écran par exemple) :
+    private static String STATE_STATE = "STATE_STATE";
+    private static String STATE_REMAINING_TIME = "STATE_REMAINING_TIME";
+    private static String STATE_NB_OF_CYCLE_DONE = "STATE_NB_OF_CYCLE_DONE";
+    private static String STATE_SESSION_TYPE = "STATE_SESSION_TYPE";
+    private static String STATE_PROGRAM_ID = "STATE_PROGRAM_ID";
+
+    // Constante d'état du timer :
+    private static String ON_READY = "ON_READY"; // Lors du premier chargement du timer
+    private static String ON_PAUSE = "ON_PAUSE"; // Quand le timer est en pause
+    private static String ON_TURN = "ON_TURN";   // Quand l'écran à été tourné.
+
+    // Constante d'état de la session :
 
     //
     public String session_type;
     public int nb_cycle_done;
     public long remaining_time;
-    public String state = "ready";
+    public String state = ON_READY;
     private Bundle savedInstanceState;
-
-    //
-    public String current_timer_name;
 
     // Elément de design :
     public TextView tv_announcement;
@@ -61,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             program_id = null;
         } else {
             tv_announcement.setText("PRESS START TO BEGIN!");
-            current_timer_name = "work";
+            session_type = "work";
             nb_cycle_done = 1;
             Button start_button = (Button) findViewById(R.id.start_button);
             Button pause_button = (Button) findViewById(R.id.pause_button);
@@ -89,17 +97,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onStart(View view) {
+        if(tabata_is_finished(program))  reinitialize_timer();
         launchTimer();
-
     }
 
     public void launchTimer(){
-        if(state == "ready"){
-            if (current_timer_name.equals("work")) remaining_time = program.getWork_time() * 1000;
-            else if (current_timer_name.equals("rest")) remaining_time = program.getRest_time() * 1000;
+        if(state == ON_READY){
+            if (session_type.equals("work")) remaining_time = program.getWork_time() * 1000;
+            else if (session_type.equals("rest")) remaining_time = program.getRest_time() * 1000;
         }
-        state = "ready";
-        //else if (current_timer_name.equals("Paused!")) remaining_time = saveCurrentTimerName;
+        state = ON_READY;
         if( !tabata_is_finished(program)) {
             timer = new CountDownTimer(remaining_time, 10) {
 
@@ -110,11 +117,11 @@ public class MainActivity extends AppCompatActivity {
 
                 public void onFinish() {
                     remaining_time = 0;
-                    if (current_timer_name.equals("work")) {
-                        current_timer_name = "rest";
+                    if (session_type.equals("work")) {
+                        session_type = "rest";
                         launchTimer();
-                    } else if (current_timer_name.equals("rest")) {
-                        current_timer_name = "work";
+                    } else if (session_type.equals("rest")) {
+                        session_type = "work";
                         nb_cycle_done++;
                         miseAJour();
                         launchTimer();
@@ -126,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onPauseButton(View view){
-        state = "on pause";
+        state = ON_PAUSE;
         if (timer != null) {
             timer.cancel();
         }
@@ -145,10 +152,10 @@ public class MainActivity extends AppCompatActivity {
             tv_announcement.setText("");
             tv_cycles.setText("");
         } else {
-            if (current_timer_name == "work") {
+            if (session_type == "work") {
                 chrono_color = WORK_COLOR;
                 annoucement_text = "WORK TIME";
-            } else if (current_timer_name == "rest") {
+            } else if (session_type == "rest") {
                 chrono_color = REST_COLOR;
                 annoucement_text = "REST TIME";
             } else {
@@ -177,11 +184,19 @@ public class MainActivity extends AppCompatActivity {
         return nb_cycle_done > program.getNb_of_cycle();
     }
 
+    public void reinitialize_timer(){
+        remaining_time = program.getWork_time();
+        nb_cycle_done = 1;
+        state = ON_READY;
+        session_type = "work";
+    }
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
-        savedInstanceState.putLong(STATE_MILLIUNTILFINISHED, remaining_time);
+        savedInstanceState.putString(STATE_STATE, state);
+        savedInstanceState.putLong(STATE_REMAINING_TIME, remaining_time);
         savedInstanceState.putInt(STATE_NB_OF_CYCLE_DONE, nb_cycle_done);
-        savedInstanceState.putString(STATE_IS_WORK_SESSION, session_type);
+        savedInstanceState.putString(STATE_SESSION_TYPE, session_type);
         savedInstanceState.putString(STATE_PROGRAM_ID, program_id);
 
         super.onSaveInstanceState(savedInstanceState);
@@ -190,9 +205,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
-        remaining_time = savedInstanceState.getLong(STATE_MILLIUNTILFINISHED);
+        state = savedInstanceState.getString(STATE_STATE);
+        remaining_time = savedInstanceState.getLong(STATE_REMAINING_TIME);
         nb_cycle_done = savedInstanceState.getInt(STATE_NB_OF_CYCLE_DONE);
-        session_type = savedInstanceState.getString(STATE_IS_WORK_SESSION);
+        session_type = savedInstanceState.getString(STATE_SESSION_TYPE);
         program_id = savedInstanceState.getString(STATE_PROGRAM_ID);
+
+        if(state != ON_PAUSE) state = ON_TURN;
+        if (timer != null) {
+            timer.cancel();
+        }
+        miseAJour();
+        if(state == ON_TURN) launchTimer();
     }
 }
