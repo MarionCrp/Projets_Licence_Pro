@@ -29,9 +29,9 @@ public class Index extends AppCompatActivity {
 
         mListView = (ListView) findViewById(R.id.listview_program);
         // Instanciation de l'objet qui va chercher la liste des programmes en base de données.
-
         List<Program> programs = ProgramDAO.selectAll();
 
+        // On gère l'affichage si aucun programe n'est enregistré.
         if(programs.size() == 0){
             TextView no_program_flash = (TextView) findViewById(R.id.no_program_flash);
             no_program_flash.setText("No program. Add your first!");

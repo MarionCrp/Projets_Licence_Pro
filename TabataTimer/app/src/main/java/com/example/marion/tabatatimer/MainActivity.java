@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private static String ON_TURN = "ON_TURN";   // Quand l'écran à été tourné.
 
     // Constante d'état de la session :
+    private static String WORK_SESSION = "WORK_SESSION";
+    private static String REST_SESSION = "REST_SESSION";
 
     //
     public String session_type;
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             program_id = null;
         } else {
             tv_announcement.setText("PRESS START TO BEGIN!");
-            session_type = "work";
+            session_type = WORK_SESSION;
             nb_cycle_done = 1;
             Button start_button = (Button) findViewById(R.id.start_button);
             Button pause_button = (Button) findViewById(R.id.pause_button);
@@ -103,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void launchTimer(){
         if(state == ON_READY){
-            if (session_type.equals("work")) remaining_time = program.getWork_time() * 1000;
-            else if (session_type.equals("rest")) remaining_time = program.getRest_time() * 1000;
+            if (session_type.equals(WORK_SESSION)) remaining_time = program.getWork_time() * 1000;
+            else if (session_type.equals(REST_SESSION)) remaining_time = program.getRest_time() * 1000;
         }
         state = ON_READY;
         if( !tabata_is_finished(program)) {
@@ -117,11 +119,11 @@ public class MainActivity extends AppCompatActivity {
 
                 public void onFinish() {
                     remaining_time = 0;
-                    if (session_type.equals("work")) {
-                        session_type = "rest";
+                    if (session_type.equals(WORK_SESSION)) {
+                        session_type = REST_SESSION;
                         launchTimer();
-                    } else if (session_type.equals("rest")) {
-                        session_type = "work";
+                    } else if (session_type.equals(REST_SESSION)) {
+                        session_type = WORK_SESSION;
                         nb_cycle_done++;
                         miseAJour();
                         launchTimer();
@@ -152,10 +154,10 @@ public class MainActivity extends AppCompatActivity {
             tv_announcement.setText("");
             tv_cycles.setText("");
         } else {
-            if (session_type == "work") {
+            if (session_type == WORK_SESSION) {
                 chrono_color = WORK_COLOR;
                 annoucement_text = "WORK TIME";
-            } else if (session_type == "rest") {
+            } else if (session_type == REST_SESSION) {
                 chrono_color = REST_COLOR;
                 annoucement_text = "REST TIME";
             } else {
@@ -188,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         remaining_time = program.getWork_time();
         nb_cycle_done = 1;
         state = ON_READY;
-        session_type = "work";
+        session_type = WORK_SESSION;
     }
 
     @Override

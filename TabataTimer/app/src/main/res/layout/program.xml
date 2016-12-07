@@ -7,7 +7,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="151dp"
+            android:layout_width="177dp"
             android:layout_height="match_parent">
 
                 <TextView
@@ -41,39 +41,52 @@
                             android:textAlignment="center"
                             android:textColor="@android:color/holo_green_dark" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/nb_of_cycle_textView"
+                            android:layout_weight="1"
+                            android:textAlignment="center"/>
+
                 </LinearLayout>
 
         </LinearLayout>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_media_play"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/edit_button_"
-            android:layout_toStartOf="@+id/edit_button_"
-            android:id="@+id/run_button"
-            android:layout_weight="1" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_edit"
-            android:id="@+id/edit_button"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/delete_button"
-            android:layout_toStartOf="@+id/delete_button"
-            android:layout_weight="1" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_media_play"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/edit_button_"
+                android:layout_toStartOf="@+id/edit_button_"
+                android:id="@+id/run_button"
+                android:layout_weight="1" />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_delete"
-            android:id="@+id/delete_button"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_weight="1" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_edit"
+                android:id="@+id/edit_button"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/delete_button"
+                android:layout_toStartOf="@+id/delete_button"
+                android:layout_weight="1" />
+
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_delete"
+                android:id="@+id/delete_button"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_weight="1" />
+    </LinearLayout>
 
 
 </LinearLayout>

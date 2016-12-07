@@ -63,10 +63,10 @@
                     android:id="@+id/announcement"
                     android:gravity="center"
                     android:textColor="@android:color/holo_red_dark"
-                    android:textSize="36sp"
+                    android:textSize="30sp"
                     android:textAlignment="center"
                     android:textStyle="normal|bold"
-                    android:layout_weight="0.09" />
+                    android:layout_weight="0.20" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -94,8 +94,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="81dp"
-            android:layout_weight="0.02">
+            android:layout_height="wrap_content"
+            android:layout_weight="0.08">
 
             <Button
                 android:text="Start"

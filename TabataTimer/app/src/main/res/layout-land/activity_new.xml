@@ -24,94 +24,99 @@
             android:inputType="text"
             android:ems="10"
             android:id="@+id/exerciceName"
-            android:layout_weight="0.07"
             android:hint="Program Title"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
             android:textAlignment="center" />
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="83dp">
+            android:layout_height="wrap_content"
+            android:weightSum="1">
 
-            <TextView
-                android:text="Exercice Time"
-                android:layout_width="153dp"
-                android:layout_height="match_parent"
-                android:id="@+id/tabataLabel"
-                android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-                android:gravity="center"
-                android:layout_weight="0.08" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:weightSum="1">
 
-            <NumberPicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/work_time"
-                android:layout_weight="1.07" />
+                <TextView
+                    android:text="Exercice Time"
+                    android:layout_width="153dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tabataLabel"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                    android:gravity="center"
+                    android:layout_weight="0.38"/>
+
+                <TextView
+                    android:text="Rest Time"
+                    android:layout_width="170dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView5"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                    android:gravity="center"
+                    android:layout_weight="0.15" />
+
+                <TextView
+                    android:text="Cycles"
+                    android:layout_width="153dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                    android:gravity="center"
+                    android:layout_weight="0.71" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="107dp">
+
+                <NumberPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/work_time"
+                    android:layout_weight="1" />
+
+                <NumberPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rest_time"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+
+                <NumberPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/nb_of_cycles"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="82dp"
-            android:layout_weight="0.25">
+            android:layout_height="match_parent">
 
-
-
-            <TextView
-                android:text="Rest Time"
-                android:layout_width="153dp"
-                android:layout_height="match_parent"
-                android:id="@+id/textView5"
-                android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-                android:gravity="center"
-                android:layout_weight="0.08" />
-
-            <NumberPicker
-                android:layout_width="wrap_content"
+            <Button
+                android:text="Submit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/rest_time"
-                android:layout_weight="1.07" />
+                android:id="@+id/timeSubmit"
+                android:onClick="onTimeSubmit"
+                android:layout_weight="1" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="362dp"
-            android:layout_height="59dp">
-
-            <TextView
-                android:text="Cycles"
-                android:layout_width="153dp"
-                android:layout_height="match_parent"
-                android:id="@+id/textView"
-                android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-                android:gravity="center"
-                android:layout_weight="0.08" />
-
-            <NumberPicker
-                android:layout_width="wrap_content"
+            <Button
+                android:text="Cancel"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/nb_of_cycles"
-                android:layout_weight="1.07" />
+                android:id="@+id/cancel"
+                android:onClick="onCancel"
+                android:layout_weight="1" />
         </LinearLayout>
-
-        <Button
-            android:text="Submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/timeSubmit"
-            android:onClick="onTimeSubmit"
-            android:layout_weight="0.07" />
-
-        <Button
-            android:text="Cancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/cancel"
-            android:onClick="onCancel"
-            android:layout_weight="0.07" />
 
     </LinearLayout>
 

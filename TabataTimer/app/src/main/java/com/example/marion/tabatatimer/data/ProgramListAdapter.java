@@ -48,6 +48,7 @@ public class ProgramListAdapter extends ArrayAdapter<Program>{
             viewHolder.title = (TextView) convertView.findViewById(R.id.title_textView);
             viewHolder.rest_time = (TextView) convertView.findViewById(R.id.rest_time_textView);
             viewHolder.work_time = (TextView) convertView.findViewById(R.id.work_time_textView);
+            viewHolder.nb_of_cycles = (TextView) convertView.findViewById(R.id.nb_of_cycle_textView);
 
             viewHolder.run_button = (ImageButton) convertView.findViewById(R.id.run_button);
             viewHolder.edit_button = (ImageButton) convertView.findViewById(R.id.edit_button);
@@ -63,6 +64,7 @@ public class ProgramListAdapter extends ArrayAdapter<Program>{
         viewHolder.title.setText(program.getTitle());
         viewHolder.rest_time.setText(String.valueOf(program.getRest_time()) + "\"");
         viewHolder.work_time.setText(String.valueOf(program.getWork_time()) + "\"");
+        viewHolder.nb_of_cycles.setText(String.valueOf(program.getNb_of_cycle()));
 
         // Gestion des boutons d'action
         viewHolder.run_button.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +102,7 @@ public class ProgramListAdapter extends ArrayAdapter<Program>{
         public TextView title;
         public TextView rest_time;
         public TextView work_time;
+        public TextView nb_of_cycles;
         public ImageButton destroy_button;
         public ImageButton edit_button;
         public ImageButton run_button;
